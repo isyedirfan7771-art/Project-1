@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabian Forest Cafe | Hyderabad</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #2C3E50; /* Dark Forest Green/Blue */
+            --accent-color: #D4AF37; /* Gold */
+            --bg-color: #F9F9F9;
+            --text-color: #333;
+            --light-text: #fff;
+            --card-bg: #ffffff;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-serif: 'Georgia', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-color); }
+
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            transition: background 0.3s;
+        }
+
+        .cta-btn:hover { background-color: var(--accent-color); }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            padding: 0 1rem;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .rating-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stars { color: var(--accent-color); }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            padding: 4rem 10%;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .about h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* --- MENU CATALOG --- */
+        .menu-section {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .menu-details {
+            padding: 1.5rem;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .menu-price {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .menu-desc {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* --- REVIEWS SECTION --- */
+        .reviews-section {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 4rem 5%;
+        }
+
+        .reviews-section .section-title {
+            color: var(--light-text);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reviewer-stars { color: var(--accent-color); font-size: 0.8rem; }
+
+        /* --- INFO & FOOTER --- */
+        .info-section {
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background-color: #fff;
+        }
+
+        .info-box h3 {
+            font-family: var(--font-serif);
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            border: none;
+        }
+
+        footer {
+            background-color: #1a252f;
+            color: #888;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplified for demo */
+            .info-section { grid-template-columns: 1fr; }
+        }
+    </style>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">
+            <i class="fas fa-tree"></i> Arabian <span>Forest</span>
+        </div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Visit Us</a>
+        </div>
+        <a href="#contact" class="cta-btn">Plan a Visit</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header>
+        <div class="rating-badge">
+            <span class="stars">★★★★★</span>
+            <span>4.7 Rating (528+ Reviews)</span>
+        </div>
+        <h1>A Hidden Gem in Hyderabad</h1>
+        <p>Experience the serene magic of Arabian Forest Cafe. A warm embrace, delicious flavors, and an ambiance that feels like home.</p>
+        <a href="#menu" class="cta-btn" style="background-color: var(--accent-color);">View Our Menu</a>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <h2>The Vibe</h2>
+        <p>
+            "Arabian Forest Cafe is a hidden gem that feels like a warm embrace from the moment you walk in. 
+            The ambiance is serene and magical, with a beautiful Arabian touch that makes every visit special. 
+            A perfect little escape filled with love and flavor!"
+        </p>
+    </section>
+
+    <!-- MENU CATALOG -->
+    <section id="menu" class="menu-section">
+        <h2 class="section-title">Our Catalog</h2>
+        <div class="menu-grid">
+            
+            <!-- Item 1 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1000&auto=format&fit=crop" alt="Coffee" class="menu-img">
+                <div class="menu-details">
+                    <div class="menu-header">
+                        <span class="menu-title">Cappuccino Coffee</span>
+                        <span class="menu-price">₹180</span>
+                    </div>
+                    <p class="menu-desc">Rich espresso with perfectly steamed milk foam.</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?q=80&w=1000&auto=format&fit=crop" alt="Pizza" class="menu-img">
+                <div class="menu-details">
+                    <div class="menu-header">
+                        <span class="menu-title">Spicy Ranch Pizza</span>
+                        <span class="menu-price">₹350</span>
+                    </div>
+                    <p class="menu-desc">Perfectly crispy crust, flavorful sauce, and generous toppings.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?q=80&w=1000&auto=format&fit=crop" alt="Burger" class="menu-img">
+                <div class="menu-details">
+                    <div class="menu-header">
+                        <span class="menu-title">Zing Burger</span>
+                        <span class="menu-price">₹280</span>
+                    </div>
+                    <p class="menu-desc">Juicy patty with our signature zesty sauce.</p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?q=80&w=1000&auto=format&fit=crop" alt="Frappe" class="menu-img">
+                <div class="menu-details">
+                    <div class="menu-header">
+                        <span class="menu-title">Hazelnut Frappe</span>
+                        <span class="menu-price">₹220</span>
+                    </div>
+                    <p class="menu-desc">A must-try cold treat with rich hazelnut flavor.</p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=1000&auto=format&fit=crop" alt="Forest Platter" class="menu-img">
+                <div class="menu-details">
+                    <div class="menu-header">
+                        <span class="menu-title">Forest Platter</span>
+                        <span class="menu-price">₹450</span>
+                    </div>
+                    <p class="menu-desc">A delicious mix of our best savory bites.</p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=1000&auto=format&fit=crop" alt="Tiramisu" class="menu-img">
+                <div class="menu-details">
+                    <div class="menu-header">
+                        <span class="menu-title">Tiramisu</span>
+                        <span class="menu-price">₹200</span>
+                    </div>
+                    <p class="menu-desc">Classic Italian dessert, sweet and creamy.</p>
+                </div>
+            </div>
+
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #777;">
+            <i class="fas fa-info-circle"></i> Note: We do not offer online ordering. Please visit us for dine-in or take-away.
+        </p>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="reviews-section">
+        <h2 class="section-title">Guest Reviews</h2>
+        <div class="reviews-grid">
+            
+            <div class="review-card">
+                <p class="review-text">"Arabian Forest Cafe is a hidden gem that feels like a warm embrace from the moment you walk in. The ambiance is serene and magical... A perfect little escape filled with love and flavor!"</p>
+                <div class="reviewer-name">
+                    <span>Verified Guest</span>
+                    <span class="reviewer-stars">★★★★★</span>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <p class="review-text">"Ma Sha Allah Tabarak Allah, best cafe in town with affordable pricing, good food & excellent coffee. Special thanks to Salam bhai for incredible hospitality. Spicy Ranch Pizza & Hazelnut Frappe are a must try."</p>
+                <div class="reviewer-name">
+                    <span>MOHD AMAN</span>
+                    <span class="reviewer-stars">★★★★★</span>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <p class="review-text">"good the food was so amazing and beautiful ambience and the spl pizza and forest platter the tase is delicious 😋 i had spend my one of my
